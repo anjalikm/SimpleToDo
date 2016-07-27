@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:titleTextColor="@android:color/white"
+        android:background="@android:color/holo_blue_bright">
+        <!--android:background="?attr/colorPrimary"-->
+
+    </android.support.v7.widget.Toolbar>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +23,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.codepath.simpletodo.EditItemActivity">
+    tools:context="com.codepath.todosmart.EditItemActivity">
 
     <EditText
         android:layout_width="wrap_content"
@@ -15,32 +31,146 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/etEditItem"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="64dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tvDueDate"
+        android:hint="Your task name here"
+        android:layout_toRightOf="@+id/tvDueDate" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit the item below"
+        android:text="Task"
         android:id="@+id/tvEdit"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textAlignment="center"
 
-    <Button
+        android:layout_alignBottom="@+id/etEditItem"
+        android:layout_alignLeft="@+id/tvDueDate"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/etEditItem" />
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/btnSaveEditItem"
-        android:onClick="onSaveEditedItem"
+        android:text="Due Date"
+        android:id="@+id/tvDueDate"
+        android:textAlignment="textStart"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:gravity="start"
+        android:layout_above="@+id/tvPriority"
+
+         />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date     long"
+        android:textAlignment="textStart"
+        android:gravity="start"
+        android:id="@+id/tvDateSet"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_alignBottom="@+id/btnSelectDate"
+        android:layout_alignLeft="@+id/etEditItem"
+        android:layout_alignStart="@+id/etEditItem" />
+
+    <ImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="date"
+        android:id="@+id/btnSelectDate"
+        android:src="@drawable/ic_calendar"
+        android:onClick="setDate"
+        android:layout_toRightOf="@+id/tvDateSet"
         android:layout_below="@+id/etEditItem"
+
+
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Priority"
+        android:id="@+id/tvPriority"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/tvDateSet"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="53dp" />
+        android:layout_toLeftOf="@+id/spinnerPriority"
+        android:layout_toStartOf="@+id/spinnerPriority"
+        android:layout_alignLeft="@+id/tvDueDate"
+        android:textAlignment="textStart"
+        android:gravity="start"
+        />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerPriority"
+        android:spinnerMode="dropdown"
+        android:layout_alignTop="@+id/tvPriority"
+        android:paddingLeft="20dp"
+        android:layout_alignBottom="@+id/tvPriority"
+        android:layout_alignLeft="@+id/tvDateSet"
+        android:layout_alignStart="@+id/tvDateSet" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notes"
+        android:id="@+id/tvNotes"
+        android:paddingTop="20dp"
+        android:textAlignment="gravity"
+        android:layout_below="@+id/tvPriority"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etNotes"
+        android:layout_alignTop="@+id/tvNotes"
+        android:layout_alignRight="@+id/etEditItem"
+        android:layout_alignEnd="@+id/etEditItem"
+        android:layout_alignLeft="@+id/spinnerPriority"
+        android:layout_alignStart="@+id/spinnerPriority"
+        android:hint="Anything else..."/>
+    <!--
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notes"
+        android:id="@+id/tvNotes"
+
+        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/etNotes"
+        android:layout_below="@+id/tvPriority"
+        android:paddingTop="20dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:id="@+id/etNotes"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/spinnerPriority"
+        android:layout_alignEnd="@+id/spinnerPriority"
+        android:layout_alignLeft="@+id/spinnerPriority"
+        android:layout_alignStart="@+id/spinnerPriority"
+        android:layout_centerInParent="true" />
+        -->
 </RelativeLayout>
+</LinearLayout>

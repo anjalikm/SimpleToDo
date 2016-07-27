@@ -1,4 +1,4 @@
-package com.codepath.simpletodo;
+package com.codepath.todosmart;
 
 import org.junit.Test;
 

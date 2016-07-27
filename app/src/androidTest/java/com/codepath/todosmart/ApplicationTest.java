@@ -1,4 +1,4 @@
-package com.codepath.simpletodo;
+package com.codepath.todosmart;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
