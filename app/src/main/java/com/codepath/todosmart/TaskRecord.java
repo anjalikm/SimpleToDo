@@ -2,6 +2,7 @@ package com.codepath.todosmart;
 
 /**
  * Created by anjalik on 7/21/16.
+ * A ToDo Task Record
  */
 public class TaskRecord {
     public int taskID;

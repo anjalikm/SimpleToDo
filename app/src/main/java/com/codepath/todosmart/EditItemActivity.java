@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,13 +35,15 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
     int pos;
     Calendar calendar;
     private int year, month, day;
-
     String code; //101- Add new Task, 102 - Edit this task
+
+    private static final String TAG = "EditItemActivity";
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.i("EditActivity","creating action button");
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.edit_menu, menu);
+        //The activity UI is used for both editing task and adding new task
+        //if this activity is launched for adding new task, set delete action button invisible in the toolbar
         if(code.equals("101")) {
             menu.getItem(1).setVisible(false);
         }
@@ -60,6 +61,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         //allow up navigation in the action bar
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_calendar);
 
         tvDateSet = (TextView)findViewById(R.id.tvDateSet);
         etEditText = (EditText) findViewById(R.id.etEditItem);
@@ -80,22 +82,19 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         code = getIntent().getStringExtra("code");
 
         if(code.equals("101")){
-            // this activity has to add new task
+            // this activity is launched to add new task
             // set the form to defaults
-            //1. show the today's date on the TextView
+            // show the today's date on the TextView
 
             calendar = Calendar.getInstance();
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);
             showDate(year, month+1, day);
-
-
-
         }
         else if (code.equals("102")){
-            //this activity has to edit the selected task
-            // set the fields with curent task's fields
+            //this activity is launched to edit the selected task
+            // set the fields with curent task's values
 
             String task = getIntent().getStringExtra("item");
             etEditText.setText(task);
@@ -108,10 +107,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         switch (item.getItemId()) {
-
             case android.R.id.home:
                 // Respond to the action bar's Up/Home button
                 //goto the parent activity
@@ -119,7 +115,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
                 return true;
 
             //respond to the save action button
-            //prepare the response for the parent activity
+            //prepare the response to save the current task details for the parent activity
             case R.id.action_save_task:
                 Intent data = new Intent(EditItemActivity.this, MainActivity.class);
                 data.putExtra("editedTask", etEditText.getText().toString()); // pass the edited task to main activity
@@ -129,11 +125,13 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
                 setResult(RESULT_OK,data); // set result code and bundle data for response
                 finish();
                 return true;
+
             //respond to the delete action button
             case R.id.action_delete_task:
-                // User chose action add new task. Launch New Task activity
+                // reassure that user wants to delete current task
                 openAlertDialog();
                 return true;
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -164,7 +162,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                //do nothing
+                //do nothing - check users's next response
             }
         });
 
@@ -210,11 +208,13 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         showDate(year,monthOfYear, dayOfMonth);
     }
+    //displays the date selected by the user
     private void showDate(int year, int month, int day) {
         tvDateSet.setText(new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year));
     }
 
+    //called when the user clicks on calendar button
     public void setDate(View view) {
         showDatePickerDialog(view);
 

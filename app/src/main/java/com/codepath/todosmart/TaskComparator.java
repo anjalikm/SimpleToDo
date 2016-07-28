@@ -7,6 +7,7 @@ import java.util.Date;
 
 /**
  * Created by anjalik on 7/25/16.
+ * TaskComparator used by the task Adapter to sort the task by their due dates and the priority
  */
 public class TaskComparator implements Comparator<TaskRecord> {
 
@@ -21,10 +22,11 @@ public class TaskComparator implements Comparator<TaskRecord> {
 
         }
         catch(ParseException pe){
-
+            System.out.println("date parse error:"+pe.getMessage());
         }
         int result = date1.compareTo(date2);
         int pri;
+        //if the dates are same, sort according to the priority -HIGH, MED, LOW
         if(result == 0){
             pri = rec2.priority.hashCode() - rec1.priority.hashCode();
             return pri;

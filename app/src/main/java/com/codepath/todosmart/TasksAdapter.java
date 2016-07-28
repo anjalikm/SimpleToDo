@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 /**
  * Created by anjalik on 7/21/16.
+ * A Custom Adapter for the List View which display Task Name, Priority and the due date
  */
 public class TasksAdapter extends ArrayAdapter<TaskRecord> {
 

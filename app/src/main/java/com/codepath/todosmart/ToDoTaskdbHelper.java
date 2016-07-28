@@ -26,6 +26,22 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NAME_PRIORITY = "priority";
     public static final String COLUMN_NAME_NOTES = "notes";
 
+    public static final String TEXT_TYPE = " TEXT";
+    public static final String DATE_TYPE = " DATE";
+    public static final String COMMA_SEP = ",";
+    public static final String SQL_CREATE_ENTRIES =
+            "CREATE TABLE " + TABLE_NAME + " (" +
+                    COLUMN_NAME_TASK_ID + " INTEGER PRIMARY KEY," +
+                    COLUMN_NAME_TASK + TEXT_TYPE + COMMA_SEP +
+                    COLUMN_NAME_DUE_DATE + DATE_TYPE + COMMA_SEP +
+                    COLUMN_NAME_PRIORITY + TEXT_TYPE + COMMA_SEP +
+                    COLUMN_NAME_NOTES + TEXT_TYPE +
+                    " )";
+
+    public static final String SQL_DELETE_ENTRIES =
+            "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+
     private static ToDoTaskdbHelper sInstance;
 
     //Singleton pattern
@@ -55,13 +71,13 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         Log.v(TAG, "creating table");
-        db.execSQL(ToDoTaskContract.SQL_CREATE_ENTRIES);
+        db.execSQL(SQL_CREATE_ENTRIES);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
         Log.v(TAG, "upgrading  db");
-        db.execSQL(ToDoTaskContract.SQL_DELETE_ENTRIES);
+        db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -100,9 +116,6 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
     public ArrayList<TaskRecord> getAllTasks() {
         ArrayList<TaskRecord> taskList = new ArrayList<TaskRecord>();
 
-        // SELECT * FROM POSTS
-        // LEFT OUTER JOIN USERS
-        // ON POSTS.KEY_POST_USER_ID_FK = USERS.KEY_USER_ID
         String TASKS_SELECT_QUERY =
                 "SELECT * FROM " + TABLE_NAME ;
         Log.v(TAG, "fetching all the records from the  database");
@@ -133,9 +146,7 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
 
     //update a task in the database
     public void update(int taskID, TaskRecord record){
-       /* UPDATE Customers
-        SET ContactName='Alfred Schmidt', City='Hamburg'
-        WHERE CustomerName='Alfreds Futterkiste';*/
+
         //populate content values
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME_TASK_ID,taskID);
@@ -158,9 +169,7 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
       SQLiteDatabase db = getWritableDatabase();
       db.beginTransaction();
       try {
-          //int rows = db.delete(TABLE_NAME, COLUMN_NAME_TASK_ID + "= ?", new String[]{String.valueOf(taskID)});
           int rows = db.delete(TABLE_NAME, COLUMN_NAME_TASK_ID + "="+ (long)taskID, null);
-          //db.delete(TABLE_NAME,null,null);
           db.setTransactionSuccessful();
           Log.i("TODOTaskdbHelper", "rows deleted:"+rows);
       }
