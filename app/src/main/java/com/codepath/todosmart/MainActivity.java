@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("dueDate",record.dueDate.toString());
         intent.putExtra("priority", toIntPriority(record.priority));
         intent.putExtra("notes",record.notes.toString());
+        intent.putExtra("status",record.status);
         // brings up the second activity
         startActivityForResult(intent, REQUEST_CODE_EDIT);
     }
@@ -161,7 +162,8 @@ public class MainActivity extends AppCompatActivity {
             String dueDate = data.getStringExtra("dueDate");
             String prio = data.getStringExtra("priority");
             String notes = data.getStringExtra("notes");
-            TaskRecord newRec = new TaskRecord(editTaskId,editedTask, prio, dueDate, notes);
+            boolean status = data.getBooleanExtra("status",false);
+            TaskRecord newRec = new TaskRecord(editTaskId,editedTask, prio, dueDate, notes,status);
             if(requestCode == REQUEST_CODE_EDIT) {
                 //check if the task is requested to delete from the child activity
                 String action_code = data.getStringExtra("action_code");
@@ -177,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "Null item removed", Toast.LENGTH_SHORT).show();
                 } else {
                     //update the task in the list as well as in the db
-                    arrayOfTasks.set(editPos, new TaskRecord(editTaskId,editedTask, prio, dueDate, notes));
+                    arrayOfTasks.set(editPos, new TaskRecord(editTaskId,editedTask, prio, dueDate, notes,status));
                     Toast.makeText(this, "Task Edited", Toast.LENGTH_SHORT).show();
                     //update in the database
                     databaseHelper.update(editTaskId,newRec);

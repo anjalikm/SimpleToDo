@@ -78,6 +78,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:textColor="#000"
         android:layout_alignBottom="@+id/btnSelectDate"
         android:layout_alignLeft="@+id/etEditItem"
         android:layout_alignStart="@+id/etEditItem" />
@@ -147,6 +148,29 @@
         android:layout_alignLeft="@+id/spinnerPriority"
         android:layout_alignStart="@+id/spinnerPriority"
         android:hint="Anything else..."/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:id="@+id/tvStatus"
+        android:layout_below="@+id/etNotes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+         />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/cbStatus"
+        android:layout_alignBaseline="@id/tvStatus"
+        android:layout_alignLeft="@+id/etNotes"
+        android:layout_alignStart="@+id/etNotes"
+
+        android:layout_marginTop="25dp"
+        android:checked="false" />
     <!--
     <TextView
         android:layout_width="wrap_content"

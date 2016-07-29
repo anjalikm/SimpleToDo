@@ -10,13 +10,15 @@ public class TaskRecord {
     public String priority;
     public String dueDate;
     public String notes;
+    public boolean status;
 
-    public TaskRecord(int tid,String tn, String p, String dd, String notes){
+    public TaskRecord(int tid,String tn, String p, String dd, String notes, boolean st){
         this.taskID = tid;
         this.taskName = tn;
         this.priority = p;
         this.dueDate = dd;
         this.notes = notes;
+        this.status = st;
     }
 
 }

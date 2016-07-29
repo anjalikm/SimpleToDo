@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -32,6 +33,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
     TextView tvDateSet;
     MenuItem action_delete_item;
     Spinner spinnerPriority;
+    CheckBox cbStatus;
     int pos;
     Calendar calendar;
     private int year, month, day;
@@ -69,6 +71,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         btnSelectDate = (ImageButton) findViewById(R.id.btnSelectDate);
         action_delete_item = (MenuItem) findViewById(R.id.action_delete_task);
         spinnerPriority = (Spinner) findViewById(R.id.spinnerPriority);
+        cbStatus =(CheckBox) findViewById(R.id.cbStatus);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.priority_array, android.R.layout.simple_spinner_item);
@@ -102,6 +105,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
             int priority = getIntent().getIntExtra("priority",0);
             spinnerPriority.setSelection(priority);
             etNotes.setText(getIntent().getStringExtra("notes"));
+            cbStatus.setChecked(getIntent().getBooleanExtra("status",false));
         }
     }
 
@@ -122,6 +126,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
                 data.putExtra("dueDate", tvDateSet.getText().toString());
                 data.putExtra("priority",spinnerPriority.getSelectedItem().toString());
                 data.putExtra("notes", etNotes.getText().toString());
+                data.putExtra("status",cbStatus.isChecked());
                 setResult(RESULT_OK,data); // set result code and bundle data for response
                 finish();
                 return true;
@@ -188,6 +193,7 @@ public class EditItemActivity extends AppCompatActivity implements DatePickerDia
         data.putExtra("dueDate", tvDateSet.getText().toString());
         data.putExtra("priority",spinnerPriority.getSelectedItem().toString());
         data.putExtra("notes", etNotes.getText().toString());
+        data.putExtra("status",cbStatus.isChecked());
         setResult(RESULT_OK,data); // set result code and bundle data for response
         finish();
     }

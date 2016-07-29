@@ -16,7 +16,7 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "ToDoTaskdbHelper";
     //database info
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "TaskDBv1.db";
     //table info
     public static final String TABLE_NAME = "tasks";
@@ -25,9 +25,11 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NAME_DUE_DATE = "dueDate";
     public static final String COLUMN_NAME_PRIORITY = "priority";
     public static final String COLUMN_NAME_NOTES = "notes";
+    public static final String COLUMN_NAME_STATUS="status";
 
     public static final String TEXT_TYPE = " TEXT";
     public static final String DATE_TYPE = " DATE";
+    public static final String INT_TYPE = " INTEGER";
     public static final String COMMA_SEP = ",";
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
@@ -35,7 +37,8 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
                     COLUMN_NAME_TASK + TEXT_TYPE + COMMA_SEP +
                     COLUMN_NAME_DUE_DATE + DATE_TYPE + COMMA_SEP +
                     COLUMN_NAME_PRIORITY + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_NAME_NOTES + TEXT_TYPE +
+                    COLUMN_NAME_NOTES + TEXT_TYPE + COMMA_SEP +
+                    COLUMN_NAME_STATUS + INT_TYPE +
                     " )";
 
     public static final String SQL_DELETE_ENTRIES =
@@ -101,6 +104,8 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
             values.put(COLUMN_NAME_DUE_DATE, record.dueDate);
             values.put(COLUMN_NAME_PRIORITY, record.priority);
             values.put(COLUMN_NAME_NOTES,record.notes);
+             int st = record.status == true ? 1 : 0;
+            values.put(COLUMN_NAME_STATUS,st);
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             last_id = db.insertOrThrow(TABLE_NAME, null, values);
             db.setTransactionSuccessful();
@@ -130,7 +135,9 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
                     String prio = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_PRIORITY));
                     String dueDate = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DUE_DATE));
                     String notes = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_NOTES));
-                    taskList.add(new TaskRecord(Integer.parseInt(taskID),taskName,prio,dueDate,notes));
+                    int iStatus = cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_STATUS));
+                    boolean bStatus = iStatus == 1 ? true : false;
+                    taskList.add(new TaskRecord(Integer.parseInt(taskID),taskName,prio,dueDate,notes,bStatus));
 
                 } while(cursor.moveToNext());
             }
@@ -154,6 +161,8 @@ public class ToDoTaskdbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME_DUE_DATE, record.dueDate);
         values.put(COLUMN_NAME_PRIORITY, record.priority);
         values.put(COLUMN_NAME_NOTES,record.notes);
+        int st = record.status == true ? 1 :0;
+        values.put(COLUMN_NAME_STATUS,st);
 
 
         Log.v(TAG, "updating the record in the  database");
