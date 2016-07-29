@@ -33,6 +33,7 @@ public class TasksAdapter extends ArrayAdapter<TaskRecord> {
         TextView tvTask = (TextView) convertView.findViewById(R.id.tvTask);
         TextView tvPriority = (TextView) convertView.findViewById(R.id.tvPriority);
         TextView tvDueDate = (TextView) convertView.findViewById(R.id.tvDueDate);
+       // CheckBox cbStatus = (CheckBox)convertView.findViewById(R.id.cbStatus);
         // Populate the data into the template view using the data object
         tvTask.setText(taskRecord.taskName);
         if(taskRecord.priority.equals("HIGH"))
@@ -43,6 +44,7 @@ public class TasksAdapter extends ArrayAdapter<TaskRecord> {
             tvPriority.setTextColor(Color.parseColor("#00e6e6"));
         tvPriority.setText(taskRecord.priority);
         tvDueDate.setText(taskRecord.dueDate);
+        //cbStatus.setChecked(taskRecord.status);
         // Return the completed view to render on screen
         return convertView;
     }

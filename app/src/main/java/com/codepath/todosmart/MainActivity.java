@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+
     // converts the Priority to integer ( 0 - LOW, 1- MED, 2-HIGH
     // Integer priority is used to index the item in prioritySpinner
     private int toIntPriority(String priority){

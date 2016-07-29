@@ -12,7 +12,10 @@
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:maxWidth="240dp"
-        android:text="TaskName" />
+        android:text="TaskName"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/cbStatus"
+        android:layout_toEndOf="@+id/cbStatus" />
 
     <TextView
         android:id="@+id/tvPriority"
@@ -30,7 +33,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,5 +46,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:text="dua date" />
+
+
 
 </RelativeLayout>
