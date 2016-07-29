@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:weightSum="1"
-    android:background="#efa250">
+    android:background="@android:color/holo_blue_bright">
 
 
-    <TextView android:layout_width="154dp"
-        android:layout_height="179dp"
-        android:text="ToDoSmart!!"
-        android:layout_gravity="center_horizontal|bottom"
-        android:textSize="25dp"
-        android:textColor="#a11d0e" />
+    <TextView android:layout_width="259dp"
+        android:layout_height="76dp"
+        android:text="ToDoSmart!"
+        android:layout_gravity="center"
+        android:textSize="40dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:typeface="serif"
+        android:id="@+id/textView"
+        android:layout_toRightOf="@+id/splashscreen"
+        android:layout_toEndOf="@+id/splashscreen" />
 
-    <ImageView android:id="@+id/splashscreen" android:layout_width="158dp"
-        android:layout_height="158dp"
-        android:src="@mipmap/ic_todo_launcher"
-        android:layout_gravity="center"/>
+    <ImageView android:id="@+id/splashscreen" android:layout_width="89dp"
+        android:layout_height="89dp"
+        android:src="@drawable/ic_calendar"
+        android:layout_gravity="left|center_vertical"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-</FrameLayout>
+</RelativeLayout>
+    <!--android:src="@mipmap/ic_todo_launcher"-->
