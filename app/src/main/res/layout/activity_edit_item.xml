@@ -101,7 +101,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Priority"
+        android:text="@string/priority"
         android:id="@+id/tvPriority"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="25dp"
@@ -129,7 +129,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notes"
+        android:text="@string/notes"
         android:id="@+id/tvNotes"
         android:paddingTop="20dp"
         android:textAlignment="gravity"
@@ -163,38 +163,13 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="@string/status_done"
         android:id="@+id/cbStatus"
         android:layout_alignBaseline="@id/tvStatus"
         android:layout_alignLeft="@+id/etNotes"
         android:layout_alignStart="@+id/etNotes"
-
         android:layout_marginTop="25dp"
         android:checked="false" />
-    <!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notes"
-        android:id="@+id/tvNotes"
 
-        android:gravity="center_vertical"
-        android:layout_alignTop="@+id/etNotes"
-        android:layout_below="@+id/tvPriority"
-        android:paddingTop="20dp"
-        />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:id="@+id/etNotes"
-        android:layout_marginTop="20dp"
-        android:layout_alignRight="@+id/spinnerPriority"
-        android:layout_alignEnd="@+id/spinnerPriority"
-        android:layout_alignLeft="@+id/spinnerPriority"
-        android:layout_alignStart="@+id/spinnerPriority"
-        android:layout_centerInParent="true" />
-        -->
 </RelativeLayout>
 </LinearLayout>

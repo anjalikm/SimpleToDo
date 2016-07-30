@@ -8,9 +8,9 @@
 
     <TextView android:layout_width="259dp"
         android:layout_height="76dp"
-        android:text="ToDoSmart!"
+        android:text="@string/splashText"
         android:layout_gravity="center"
-        android:textSize="40dp"
+        android:textSize="35dp"
         android:textColor="#000"
         android:textStyle="bold"
         android:layout_centerVertical="true"
@@ -28,4 +28,3 @@
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>
-    <!--android:src="@mipmap/ic_todo_launcher"-->
