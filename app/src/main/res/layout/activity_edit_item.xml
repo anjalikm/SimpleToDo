@@ -82,6 +82,10 @@
         android:layout_alignBottom="@+id/btnSelectDate"
         android:layout_alignLeft="@+id/etEditItem"
         android:layout_alignStart="@+id/etEditItem" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
 
     <ImageButton
         style="?android:attr/buttonStyleSmall"
@@ -168,6 +172,7 @@
         android:layout_alignBaseline="@id/tvStatus"
         android:layout_alignLeft="@+id/etNotes"
         android:layout_alignStart="@+id/etNotes"
+
         android:layout_marginTop="25dp"
         android:checked="false" />
 
