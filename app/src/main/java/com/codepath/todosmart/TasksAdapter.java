@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class TasksAdapter extends ArrayAdapter<TaskRecord> {
         TextView tvTask = (TextView) convertView.findViewById(R.id.tvTask);
         TextView tvPriority = (TextView) convertView.findViewById(R.id.tvPriority);
         TextView tvDueDate = (TextView) convertView.findViewById(R.id.tvDueDate);
+            ImageView ivStatus = (ImageView)convertView.findViewById(R.id.ivStatus);
        // CheckBox cbStatus = (CheckBox)convertView.findViewById(R.id.cbStatus);
         // Populate the data into the template view using the data object
         tvTask.setText(taskRecord.taskName);
@@ -44,6 +46,12 @@ public class TasksAdapter extends ArrayAdapter<TaskRecord> {
             tvPriority.setTextColor(Color.parseColor("#00e6e6"));
         tvPriority.setText(taskRecord.priority);
         tvDueDate.setText(taskRecord.dueDate);
+        //choose the image source to show the status
+        if(taskRecord.status){
+            ivStatus.setImageResource(R.drawable.ic_status_done);
+        }
+        else
+            ivStatus.setImageResource(R.drawable.ic_status_not_done);
         //cbStatus.setChecked(taskRecord.status);
         // Return the completed view to render on screen
         return convertView;

@@ -3,7 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <ImageView android:id="@+id/ivStatus"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@mipmap/ic_check_mark"
 
+        android:layout_below="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/tvDueDate"
+       />
     <TextView
         android:id="@+id/tvTask"
         android:layout_width="wrap_content"
@@ -14,8 +23,9 @@
         android:maxWidth="240dp"
         android:text="TaskName"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/cbStatus"
-        android:layout_toEndOf="@+id/cbStatus" />
+        android:layout_toRightOf="@+id/ivStatus"
+        android:layout_toEndOf="@+id/ivStatus"
+        />
 
     <TextView
         android:id="@+id/tvPriority"
@@ -46,7 +56,6 @@
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:text="dua date" />
-
 
 
 </RelativeLayout>
