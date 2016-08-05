@@ -27,6 +27,7 @@ The following **additional** features are implemented:
 
 * [x] The To-Do task items are sorted and displayed in the ListView according to the due date and the priorities.
 * [x] The ListView displays Status, Due Date and Priority for each item.
+* [x] Added splash screen.
 
 ## Video Walkthrough 
 
